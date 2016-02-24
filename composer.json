@@ -1,0 +1,40 @@
+{
+    "name": "antqa/payum-perfectmoney",
+    "type": "library",
+    "description": "The Payum extension. It provides Perfectmoney payment integration.",
+    "keywords": ["payum", "payment", "perfectmoney", "perfect money", "symfony"],
+    "homepage": "https://www.ant.qa",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Piotr Antosik",
+            "email": "piotr.antosik@ant.qa"
+        },
+        {
+            "name":     "ant.qa developers",
+            "homepage": "https://www.ant.qa"
+        },
+        {
+            "name":     "Community contributions",
+            "homepage": "https://github.com/antqa/payum-perfectmoney/contributors"
+        }
+    ],
+    "require": {
+        "php": "^5.5.0|^7.0",
+        "payum/core": "~1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0"
+    },
+    "autoload": {
+        "psr-4": { "Antqa\\Payum\\Perfectmoney\\": "" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

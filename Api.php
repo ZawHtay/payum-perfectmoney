@@ -11,9 +11,7 @@
 
 namespace Antqa\Payum\Perfectmoney;
 
-use GuzzleHttp\Psr7\Request;
 use Payum\Core\Bridge\Guzzle\HttpClientFactory;
-use Payum\Core\Exception\Http\HttpException;
 use Payum\Core\HttpClientInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\LogicException;
@@ -77,26 +75,6 @@ class Api
 
         $this->options = $options;
         $this->client = $client ?: HttpClientFactory::create();
-    }
-    /**
-     * @param array $fields
-     *
-     * @return array
-     */
-    protected function doRequest(array $fields)
-    {
-        $headers = [
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ];
-
-        $request = new Request('POST', $this->getApiEndpoint(), $headers, http_build_query($fields));
-        $response = $this->client->send($request);
-
-        if (false === ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300)) {
-            throw HttpException::factory($request, $response);
-        }
-
-        return $response->getBody()->getContents();
     }
 
     /**

@@ -9,20 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Antqa\Payum\Perfectmoney\Test;
+namespace Antqa\Payum\Perfectmoney\Test\Action;
 
 use Payum\Core\Model\Payment;
 use Payum\Core\Model\PaymentInterface;
 use Payum\Core\Request\Convert;
-use Payum\Core\GatewayInterface;
-use Payum\Core\Tests\GenericActionTest;
 use Antqa\Payum\Perfectmoney\Api;
 use Antqa\Payum\Perfectmoney\Action\ConvertPaymentAction;
 
 /**
  * @author Piotr Antosik <piotr.antosik@ant.qa>
  */
-class ConvertPaymentActionTest extends GenericActionTest
+class ConvertPaymentActionTest extends BaseActionTest
 {
     protected $actionClass = 'Antqa\Payum\Perfectmoney\Action\ConvertPaymentAction';
 
@@ -108,13 +106,5 @@ class ConvertPaymentActionTest extends GenericActionTest
 
         $this->assertArrayHasKey('foo', $details);
         $this->assertEquals('fooVal', $details['foo']);
-    }
-
-    /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|GatewayInterface
-     */
-    protected function createGatewayMock()
-    {
-        return $this->getMock(GatewayInterface::class);
     }
 }

@@ -13,13 +13,12 @@ namespace Antqa\Payum\Perfectmoney\Test\Action;
 
 use Antqa\Payum\Perfectmoney\Api;
 use Payum\Core\Request\GetHumanStatus;
-use Payum\Core\Tests\GenericActionTest;
 use Antqa\Payum\Perfectmoney\Action\StatusAction;
 
 /**
  * @author Piotr Antosik <piotr.antosik@ant.qa>
  */
-class StatusActionTest extends GenericActionTest
+class StatusActionTest extends BaseActionTest
 {
     protected $requestClass = 'Payum\Core\Request\GetHumanStatus';
 
@@ -113,5 +112,27 @@ class StatusActionTest extends GenericActionTest
         $action->execute($status = new GetHumanStatus($model));
 
         $this->assertTrue($status->isFailed());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAllowSetApi()
+    {
+        $expectedApi = $this->createApiMock();
+        $action = new StatusAction();
+        $action->setApi($expectedApi);
+        $this->assertAttributeSame($expectedApi, 'api', $action);
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException \Payum\Core\Exception\UnsupportedApiException
+     */
+    public function throwIfUnsupportedApiGiven()
+    {
+        $action = new StatusAction();
+        $action->setApi(new \stdClass());
     }
 }

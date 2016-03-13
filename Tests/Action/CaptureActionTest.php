@@ -14,16 +14,14 @@ namespace Antqa\Payum\Perfectmoney\Test\Action;
 use Antqa\Payum\Perfectmoney\Api;
 use Payum\Core\Action\GatewayAwareAction;
 use Payum\Core\ApiAwareInterface;
-use Payum\Core\GatewayInterface;
 use Payum\Core\Request\Capture;
 use Payum\Core\Request\GetHttpRequest;
-use Payum\Core\Tests\GenericActionTest;
 use Antqa\Payum\Perfectmoney\Action\CaptureAction;
 
 /**
  * @author Piotr Antosik <piotr.antosik@ant.qa>
  */
-class CaptureActionTest extends GenericActionTest
+class CaptureActionTest extends BaseActionTest
 {
     protected $requestClass = Capture::class;
 
@@ -56,6 +54,7 @@ class CaptureActionTest extends GenericActionTest
         $action->setApi($expectedApi);
         $this->assertAttributeSame($expectedApi, 'api', $action);
     }
+
     /**
      * @test
      *
@@ -143,21 +142,5 @@ class CaptureActionTest extends GenericActionTest
         $this->assertEquals($model[Api::FIELD_PAYMENT_ID], $actualModel[Api::FIELD_PAYMENT_ID]);
         $this->assertEquals(1456652247, $actualModel[Api::FIELD_TIMESTAMPGMT]);
         $this->assertEquals('testhash', $actualModel[Api::FIELD_V2_HASH]);
-    }
-
-    /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|Api
-     */
-    protected function createApiMock()
-    {
-        return $this->getMock(Api::class, [], [], '', false);
-    }
-
-    /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|GatewayInterface
-     */
-    protected function createGatewayMock()
-    {
-        return $this->getMock(GatewayInterface::class);
     }
 }

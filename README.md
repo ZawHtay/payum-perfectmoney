@@ -55,11 +55,12 @@ $payment->setDetails([
 ```yml
 #services.yml
 
-app.payum.perfectmoney.factory:
-    class: Antqa\Payum\Perfectmoney\PerfectMoneyGatewayFactory
-    arguments: [[], '@payum.core_gateway_factory']
+app.payum.perfectmoney.factory_builder:
+    class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+    arguments:
+        - Antqa\Payum\Perfectmoney\PerfectMoneyGatewayFactory
     tags:
-        - { name: payum.gateway_factory, factory_name: perfectmoney, human_name: 'Perfect Money' }
+        - { name: payum.gateway_factory_builder, factory: perfectmoney }
 ```
 
 ### Configuration
